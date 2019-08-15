@@ -4,16 +4,12 @@ ENV ENABLE_INIT_DAEMON true
 ENV INIT_DAEMON_BASE_URI http://identifier/init-daemon
 ENV INIT_DAEMON_STEP spark_master_init
 
-ENV SPARK_VERSION=2.3.1
+ENV SPARK_VERSION=2.4.0
 ENV HADOOP_VERSION=2.7
 
 COPY wait-for-step.sh /
 COPY execute-step.sh /
 COPY finish-step.sh /
-
-#COPY bde-spark.css /css/org/apache/spark/ui/static/timeline-view.css
-
-
 
 RUN apk add --update  --no-cache bash wget\
       && chmod +x *.sh \
@@ -21,8 +17,6 @@ RUN apk add --update  --no-cache bash wget\
       && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
       && mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} spark \
       && rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
-      #&& cd /css \
-      #&& jar uf /spark/jars/spark-core_2.11-${SPARK_VERSION}.jar org/apache/spark/ui/static/timeline-view.css \
       && cd /
 
 RUN apk add --no-cache --update python3 curl

@@ -1,4 +1,4 @@
-FROM jerdbo/spark-base:2.3.1-hadoop2.7
+FROM belgacea/alpine-spark:2.4.0-hadoop2.7-master
 
 ENV SPARK_MASTER_NAME spark-master
 ENV SPARK_MASTER_PORT 7077
